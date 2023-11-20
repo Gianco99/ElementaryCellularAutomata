@@ -6,7 +6,6 @@ if len(sys.argv) < 5:
     print("Usage: python cellularAutomata.py <rule> <size> <iterations> <boundary_condition>")
     sys.exit(1)
 
-binary_rule = bin(int(sys.argv[1]))[2:].zfill(8)  
 dimensions = int(sys.argv[2]) + 1
 iterations = int(sys.argv[3])
 boundary_condition = sys.argv[4].lower()
@@ -17,6 +16,12 @@ try:
 except ValueError:
     print("Error: Rule should be a valid integer between 0 and 256.")
     sys.exit(1)
+
+if int(sys.argv[1]) != sys.argv[1]:
+    print("Error: Rule must be an int!")
+    sys.exit(1)
+
+binary_rule = bin(int(sys.argv[1]))[2:].zfill(8)  
 
 if dimensions < 3:
     print("Error: Size should be greater than or equal to 3.")

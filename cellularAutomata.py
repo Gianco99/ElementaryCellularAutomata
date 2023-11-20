@@ -11,17 +11,14 @@ iterations = int(sys.argv[3])
 boundary_condition = sys.argv[4].lower()
 
 try:
-    if int(sys.argv[1]) < 0 or int(sys.argv[1]) > 256:
+    rule = int(sys.argv[1])
+    if 0 <= rule < 256:
+        binary_rule = bin(rule)[2:].zfill(8)
+    else:
         raise ValueError("Rule should be a number between 0 and 256.")
-except ValueError:
+except (ValueError, IndexError):
     print("Error: Rule should be a valid integer between 0 and 256.")
     sys.exit(1)
-
-if int(sys.argv[1]) != sys.argv[1]:
-    print("Error: Rule must be an int!")
-    sys.exit(1)
-
-binary_rule = bin(int(sys.argv[1]))[2:].zfill(8)  
 
 if dimensions < 3:
     print("Error: Size should be greater than or equal to 3.")
